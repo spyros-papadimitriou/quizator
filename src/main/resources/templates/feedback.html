@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Quizator</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Αρχική σελίδα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/courses}">Μαθήματα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/course/{id}(id=${quiz.course.id})}"
+                                           th:text="${quiz.course.name}"></a></li>
+            <li class="breadcrumb-item active" th:text="${'Quiz #' + quiz.id}"></li>
+        </ol>
+    </nav>
+    <hr/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success" th:if="${correct}">Σωστό :)</div>
+            <div class="alert alert-danger" th:if="${!correct}">Λάθος :(</div>
+        </div>
+    </div>
+    <div class="row" th:if="${message}">
+        <div class="col-6">
+            <div class="alert alert-info" th:text="${message}"></div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <a class="btn btn-primary" th:href="@{/quiz/{id}(id=${quiz.id})}">Συνέχεια του κουίζ</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

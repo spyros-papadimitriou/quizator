@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Quizator</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Αρχική σελίδα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/courses}">Μαθήματα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/course/{id}(id=${quiz.course.id})}"
+                                           th:text="${quiz.course.name}"></a></li>
+            <li class="breadcrumb-item active" th:text="${'Quiz #' + quiz.id}"></li>
+        </ol>
+    </nav>
+    <hr/>
+
+    <p th:text="${message}"></p>
+
+    <div class="row" th:if="${!isQuizFinished}">
+        <div class="col-12">
+            <h5 th:text="${currentQuizQuestion.question.description}"></h5>
+            <form method="post" th:action="@{/quiz/answer}">
+                <div class="form-check" th:each="answer, status : ${currentQuizQuestion.question.answers}">
+                    <input class="form-check-input" type="radio" name="answer" th:id="${'answer-' + answer.id}"
+                           th:value="${answer.id}"
+                           required>
+                    <label class="form-check-label" th:for="${'answer-' + answer.id}" th:text="${answer.description + ' (' + answer.correct + ')'}">
+                    </label>
+                </div>
+                <input type="hidden" name="quiz" th:value="${quiz.id}">
+
+                <button type="submit" class="btn btn-primary mt-3">Απάντηση</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" th:if="${isQuizFinished}">
+        <div class="col-12">
+            <div class="alert alert-info">Το κουίζ έχει ολοκληρωθεί.</div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

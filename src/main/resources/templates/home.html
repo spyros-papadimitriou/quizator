@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Quizator</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h5>Dashboard</h5>
+    <hr/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Μαθήματα</h5>
+                    <p class="card-text">Δείτε λίστα με τα μαθήματα που υποστηρίζει το Quizator.</p>
+                    <a th:href="@{/courses}" class="card-link">Μαθήματα</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

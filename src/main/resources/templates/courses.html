@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Quizator</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h5>Μαθήματα</h5>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Αρχική σελίδα</a></li>
+            <li class="breadcrumb-item active">Μαθήματα</li>
+        </ol>
+    </nav>
+    <hr/>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card" th:each="course, status : ${courses}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${course.name}"></h5>
+                    <p class="card-text" th:text="${course.description}"></p>
+                    <a th:href="@{/course/{id}(id=${course.id})}">Προβολή μαθήματος</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

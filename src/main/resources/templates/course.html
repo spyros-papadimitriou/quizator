@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Quizator</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h5 th:text="${course.name}"></h5>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Αρχική σελίδα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/courses}">Μαθήματα</a></li>
+            <li class="breadcrumb-item active" th:text="${course.name}"></li>
+        </ol>
+    </nav>
+    <hr/>
+
+    <div class="row">
+        <div class="col-12">
+            <h5>Κεφάλαια</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Όνομα</th>
+                    <th>Επίπεδο γνώσης</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="chapter, status : ${course.chapters}">
+                    <td th:text="${status.count + '.'}"></td>
+                    <td>
+                        <a th:href="@{/chapter/{id}(id=${chapter.id})}" th:text="${chapter.name}"></a>
+                    </td>
+                    <td></td>
+                    <td>
+                        <a th:href="@{/chapter/{id}(id=${chapter.id})}">Προβολή</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-end">
+            <form method="post" th:action="@{/quiz/create}">
+                <input type="hidden" name="course" th:value="${course.id}">
+
+                <button th:if="${quiz == null}" class="btn btn-primary" type="submit">Δημιουργία κουίζ</button>
+                <a th:if="${quiz != null}" class="btn btn-primary" th:href="@{/quiz/{id}(id=${quiz.id})}" th:text="${'Συνέχεια του κουίζ #' + quiz.id}"></a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}" lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Quizator</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h5 th:text="${chapter.name}"></h5>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Αρχική σελίδα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/courses}">Μαθήματα</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/course/{id}(id=${chapter.course.id})}"
+                                           th:text="${chapter.course.name}"></a></li>
+            <li class="breadcrumb-item active" th:text="${chapter.name}"></li>
+        </ol>
+    </nav>
+    <hr/>
+
+    <div class="row">
+        <div class="col-9">
+            <h5>Περιγραφή μαθήματος</h5>
+            <div th:utext="${chapter.description}"></div>
+        </div>
+        <div class="col-3">
+            <h5>Εξέλιξη επιπέδου γνώσης</h5>
+            <div th:if="${userChapterList.isEmpty()}">
+                Το σύστημα δε γνωρίζει το επίπεδο γνώσης του μαθητή για το συγκεκριμένο
+                κεφάλαιο.
+            </div>
+
+            <ul class="list-group" th:if="${!userChapterList.isEmpty()}">
+                <th:block th:each="userChapter, status : ${userChapterList}">
+                    <li class="list-group-item list-group-item-danger" th:if="${userChapter.knowledgeLevel.id == 1}">
+                        <span th:text="${userChapter.knowledgeLevel.name}"></span><br/>
+                        <span class="small text-muted" th:text="${userChapter.dateCreated}"></span>
+                        <div class="badge bg-info" th:if="${status.count == 1}">Τρέχον</div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-warning" th:if="${userChapter.knowledgeLevel.id == 2}">
+                        <span th:text="${userChapter.knowledgeLevel.name}"></span><br/>
+                        <span class="small text-muted" th:text="${userChapter.dateCreated}"></span>
+                        <div class="badge bg-info" th:if="${status.count == 1}">Τρέχον</div>
+                    </li>
+
+                    <li class="list-group-item list-group-item-success" th:if="${userChapter.knowledgeLevel.id == 3}">
+                        <span th:text="${userChapter.knowledgeLevel.name}"></span><br/>
+                        <span class="small text-muted" th:text="${userChapter.dateCreated}"></span>
+                        <div class="badge bg-info" th:if="${status.count == 1}">Τρέχον</div>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
