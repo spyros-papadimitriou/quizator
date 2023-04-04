@@ -1,4 +1,4 @@
 # Quizator
-Το project δημιουργήθηκε κατά τη διάλεξη του μαθήματος "Τεχνολογίες Εξατομίκευσης Λογισμικού" του μεταπτυχιακού προγράμματος σπουδών "Προηγμένα Συστήματα Πληροφορικής" του Τμήματος Πληροφορικής του Πανεπιστήμιου Πειραιώς. Σκοπός ήταν να γίνει live επίδειξη πώς μπορεί κανείς να υλοποίησει από το μηδεν μία εκπαιδευτική διαδικτυακή εφαρμογή με εξατομικευμένο περιεχόμενο.
+The project was created during the lecture "Software Personalization Technologies" course of the postgraduate program "Advanced Computer Systems" of the Department of Computer Science of the University of Piraeus. The aim was to demonstrate how one can implement an educational web application with personalised content from scratch.
 
-Δεν ήταν δυνατό να ολοκληρωθεί σε μία διάλεξη. Ωστόσο, ίσως αποτελεί ένα καλό πρώτο βήμα για μελέτη του κώδικα και επέκτασή του από οποιονδήποτε το επιθυμεί. Το project είναι γραμμένο σε Spring framework.
+It was not possible to complete it in one lecture. However, it could be an excellent first step for anyone interested in studying and extending the code. The project is written using the Spring framework.
